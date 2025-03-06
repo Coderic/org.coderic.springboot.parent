@@ -11,6 +11,7 @@
     <groupId>org.coderic.springboot</groupId>
     <artifactId>parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>Coderic Spring Boot parent</name>
     <description>Coderic Spring Boot parent</description>
     <url>https://github.com/Coderic/org.coderic.springboot.parent</url>

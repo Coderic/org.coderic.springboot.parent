@@ -1,0 +1,29 @@
+name: Java Test with Maven
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+permissions:
+  contents: write
+  packages: write
+  id-token: write
+env:
+  GPG_PASSPHRASE: ${{ secrets.RELEASES_GPG_PASSPHRASE }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    environment: testing
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: 21
+          distribution: temurin
+          cache: maven
+          gpg-private-key: ${{ secrets.RELEASES_GPG_PRIVATE_KEY }}
+      - name: Test with Maven
+        run: mvn clean verify --file pom.xml
